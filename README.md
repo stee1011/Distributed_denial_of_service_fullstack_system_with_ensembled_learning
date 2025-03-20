@@ -25,6 +25,7 @@ This is a full-stack **DDoS detection system** built using **Django** (backend) 
 - Django 5.1.1
 - PostgreSQL with pgAdmin4
 - Scikit-learn, Pandas, NumPy
+- You need to have pgAdmin4 installed and set it up
 
 Run 
 **pip install -r --no-cache-dir requirements.txt**
@@ -67,7 +68,7 @@ python manage.py runserver
 ## Dashboard Preview
 Access the dashboard at:
 ```
-http://127.0.0.1:8000/admin
+http://127.0.0.1:8000/home
 ```
 
 ## Security Features
