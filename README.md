@@ -89,5 +89,6 @@ This project is **open-source** and available under the **MIT License**.
 **Developer:** stee1011  
  Email: stevenjoro101@gmail.com  
  GitHub: [stee1011](https://github.com/stee1011)
- ![img](base (3).jpg)
+ 
+ ![img](base (page 3).jpeg)
 
