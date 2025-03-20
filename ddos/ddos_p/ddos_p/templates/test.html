@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Security Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+        }
+        .status-section, .traffic-section, .attacks-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            padding: 15px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .card p {
+            margin: 5px 0 0;
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Network Security Dashboard</h1>
+        </div>
+
+        <div class="status-section">
+            <h2>System Status</h2>
+            <div class="card">
+                <h3>Status</h3>
+                <p id="systemStatus">idle</p>
+            </div>
+        </div>
+
+        <div class="traffic-section">
+            <h2>Traffic Overview</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Current Traffic</h3>
+                    <p id="currentTraffic">0 Gbps</p>
+                    <small>Trend: 0</small>
+                </div>
+                <div class="card">
+                    <h3>Blocked Traffic</h3>
+                    <p id="blockedTraffic">0 Gbps</p>
+                    <small>Trend: 15</small>
+                </div>
+                <div class="card">
+                    <h3>Active Attacks</h3>
+                    <p id="activeAttacks">0</p>
+                    <small>Trend: 0</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="attacks-section">
+            <h2>Geographic Attack Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source IP</th>
+                        <th>Attack Count</th>
+                    </tr>
+                </thead>
+                <tbody id="geoDataTable">
+                    <!-- Data will be populated via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Sample JSON data (replace with your actual JSON)
+        const data = {
+            "systemStatus": "idle",
+            "currentTraffic": { "value": 0, "unit": "Gbps", "trend": 0 },
+            "blockedTraffic": { "value": 0, "unit": "Gbps", "trend": 15 },
+            "activeAttacks": { "count": 0, "trend": 0 },
+            "geographicData": [
+                {"src_ip": "167.246.219.48", "attacks": 1},
+                {"src_ip": "119.172.67.250", "attacks": 1},
+                // Add more entries as needed or fetch dynamically
+            ]
+        };
+
+        // Populate System Status
+        document.getElementById('systemStatus').textContent = data.systemStatus;
+
+        // Populate Traffic Overview
+        document.getElementById('currentTraffic').textContent = `${data.currentTraffic.value} ${data.currentTraffic.unit}`;
+        document.getElementById('blockedTraffic').textContent = `${data.blockedTraffic.value} ${data.blockedTraffic.unit}`;
+        document.getElementById('activeAttacks').textContent = data.activeAttacks.count;
+
+        // Populate Geographic Attack Data
+        const geoTable = document.getElementById('geoDataTable');
+        data.geographicData.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.src_ip}</td>
+                <td>${item.attacks}</td>
+            `;
+            geoTable.appendChild(row);
+        });
+    </script>
+</body>
+</html>
